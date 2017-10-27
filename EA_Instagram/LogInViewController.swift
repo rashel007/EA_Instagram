@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LogInViewController: UIViewController {
     
@@ -14,6 +15,8 @@ class LogInViewController: UIViewController {
     @IBOutlet var email: UITextField!
 
     @IBOutlet var password: UITextField!
+    
+
     
     
     override func viewDidLoad() {
@@ -24,6 +27,24 @@ class LogInViewController: UIViewController {
     
     
     @IBAction func btnLogin(_ sender: Any) {
+        guard email.text != "", password.text != "" else {
+            print("Email or Password Empty")
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            if let user = user {
+                let vc  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "userVC")
+                
+                self.present(vc, animated: true, completion: nil)
+                
+            }
+        }
+        
         
     }
 

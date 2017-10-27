@@ -60,6 +60,7 @@
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="btnSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Bn-Mn-ST3"/>
+                                    <segue destination="BoY-U4-10s" kind="show" id="0Vg-VX-NnP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -84,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="54" y="128"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="KG0-Wx-LFq">
@@ -198,6 +199,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Oa-W8-Fjb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="851.25" y="138.38028169014083"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="knD-W5-dXv">
+            <objects>
+                <viewController storyboardIdentifier="userVC" id="kue-n3-AIf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lnZ-eb-ygU"/>
+                        <viewControllerLayoutGuide type="bottom" id="J12-j6-iqM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mpa-eY-HVQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jmJ-fJ-M0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1539" y="138"/>
         </scene>
     </scenes>
 </document>
