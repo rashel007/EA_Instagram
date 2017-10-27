@@ -8,5 +8,8 @@ target 'EA_Instagram' do
   # Pods for EA_Instagram
 
 pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database’
+pod 'Firebase/Storage’
 
 end
