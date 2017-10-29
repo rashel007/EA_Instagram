@@ -21,8 +21,12 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       print("viewDidLoad")
         // Do any additional setup after loading the view.
+    }
+    
+    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+      print(identifier)
     }
     
     
@@ -31,6 +35,8 @@ class LogInViewController: UIViewController {
             print("Email or Password Empty")
             return
         }
+        
+          print("Login button clicked")
         
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user, error) in
             if let error = error {

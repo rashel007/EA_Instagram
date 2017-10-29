@@ -42,6 +42,14 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backLogin" {
+            print("segue happend")
+            self.dismiss(animated: true, completion: nil)
+            
+        }
+    }
+    
     @IBAction func btnNextAction(_ sender: Any) {
         
         guard fullname.text != "", email.text != "", password.text != "", confirmPAssword.text != "" else {
