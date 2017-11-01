@@ -38,5 +38,6 @@ class ImageUploadManager: NSObject {
             completionBack(nil, "Image couldn't be converted to Data")
         }
     }
+    
 
 }

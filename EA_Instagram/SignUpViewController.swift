@@ -70,7 +70,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 changRequest.displayName = self.fullname.text
                 changRequest.commitChanges(completion: nil)
             
-                print("\(user.uid)")
+                print(" Sign UP -> \(user.uid)")
                 
 //                spaceRef = self.storage.reference(forURL: "gs://eainstagram-53698.appspot.com")
                 
@@ -86,11 +86,13 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                         let userInfo: [String : Any] = ["uid" : user.uid,
                                                         "fullname" : self.fullname.text!,
                                                         "urlToImage" : url]
+            
                         
                         Database.database().reference().child("users").child(user.uid).setValue(userInfo)
                         
                         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "userVC")
                         self.present(vc, animated: true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     }
                     
                 })
