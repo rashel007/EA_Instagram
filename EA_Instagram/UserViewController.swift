@@ -9,11 +9,14 @@
 import UIKit
 import Firebase
 
-class UserViewController: UIViewController, UITabBarDelegate, UITableViewDataSource {
+class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
     
     var user = [User]()
+    
+    //set the name of logged in user
+    @IBOutlet var userName: UIBarButtonItem!
     
     var ref: DatabaseReference!
     
@@ -25,6 +28,7 @@ class UserViewController: UIViewController, UITabBarDelegate, UITableViewDataSou
         super.viewDidLoad()
         
         ref = Database.database().reference()
+
         
         getUser()
     }
@@ -42,9 +46,55 @@ class UserViewController: UIViewController, UITabBarDelegate, UITableViewDataSou
         
         cell.userIMage.downloadImage(from: self.user[indexPath.row].imagePath)
         
-        
+        checkForFollowing(indexPath: indexPath)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let userID = Auth.auth().currentUser?.uid
+        print("USER ID :  \(userID)")
+        
+        let key = ref.child("users").childByAutoId().key
+        
+        var isFollower = false
+        
+        
+        ref.child("users").child(userID!).child("following").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let following = snapshot.value as? [String : AnyObject] {
+                
+                for (ke, value) in following {
+                    if value as! String == self.user[indexPath.row].userID {
+                        isFollower = true
+                        
+                        self.ref.child("users").child(userID!).child("following/\(ke)").removeValue()
+                        self.ref.child("users").child(self.user[indexPath.row].userID).child("followers/\(ke)").removeValue()
+                        
+                        //unchecking table view row
+                        
+                        self.tableView.cellForRow(at: indexPath)?.accessoryType = .none
+                    }
+                }
+            }
+            
+            if !isFollower {
+                let following = ["following/\(key)" : self.user[indexPath.row].userID]
+                let followers = ["followers/\(key)" : userID]
+                
+                self.ref.child("users").child(userID!).updateChildValues(following)
+                self.ref.child("users").child(self.user[indexPath.row].userID).updateChildValues(followers)
+                
+                self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            }
+            
+            self.ref.removeAllObservers()
+            
+            
+        })
+    }
+    
+    
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "backToLogin" {
@@ -71,8 +121,28 @@ class UserViewController: UIViewController, UITabBarDelegate, UITableViewDataSou
                     
                     for (_, value) in data {
                         if let uid = value["uid"] as? String {
+                            
+                            if uid == userID {
+                                
+                                let name = value["fullname"] as? String;
+                                
+                                if name != nil {
+                                    var splitNameBySpace = name?.components(separatedBy: " ")
+                                    
+                                    if let title = splitNameBySpace?[0] {
+    
+                                        if  let item = self.navigationItem.rightBarButtonItem {
+                                            let button = item.customView as! UIButton
+                                            button.setTitle(title, for: .normal)
+                                        }
+                                    }
+                                    
+                                }
+                          
+                            }
+                            
                             if uid != userID {
-                                print("User id matched")
+    
                                 
                                 let userToShow = User()
                                 
@@ -104,6 +174,27 @@ class UserViewController: UIViewController, UITabBarDelegate, UITableViewDataSou
     
         
         
+    }
+    
+    
+    func checkForFollowing(indexPath: IndexPath){
+            let userID = Auth.auth().currentUser?.uid
+        
+        ref.child("users").child(userID!).child("following").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let following = snapshot.value as? [String : AnyObject] {
+                
+                for (_ , value) in following {
+                    
+                    if value as! String == self.user[indexPath.row].userID {
+                        
+                        self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+                    }
+                }
+            }
+        })
+        
+        ref.removeAllObservers()
     }
 
 
