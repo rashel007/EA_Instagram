@@ -15,10 +15,10 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var user = [User]()
     
-    //set the name of logged in user
-    @IBOutlet var userName: UIBarButtonItem!
     
     var ref: DatabaseReference!
+    
+    let indicator = ShowIndicator()
     
     
     @IBAction func logout(_ sender: Any) {
@@ -109,7 +109,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         let userID = Auth.auth().currentUser?.uid
         print(userID ?? "No User ID Found")
         
- 
+        self.indicator.customActivityIndicatory(self.view, startAnimate: true)
             ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if  let data = snapshot.value as? [String : AnyObject] {
@@ -163,10 +163,13 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
                         }
                     }
                     
-                         self.tableView.reloadData()
+                    
+                self.indicator.customActivityIndicatory(self.view, startAnimate: false)
+                self.tableView.reloadData()
                 }
                 
             }) { (error) in
+                  self.indicator.customActivityIndicatory(self.view, startAnimate: false)
                 print(error.localizedDescription)
             }
     

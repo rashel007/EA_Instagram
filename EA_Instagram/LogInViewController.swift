@@ -16,12 +16,15 @@ class LogInViewController: UIViewController {
 
     @IBOutlet var password: UITextField!
     
+    var indicator = ShowIndicator()
 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
        print("viewDidLoad")
+  
+    
         // Do any additional setup after loading the view.
     }
     
@@ -37,6 +40,7 @@ class LogInViewController: UIViewController {
         }
         
           print("Login button clicked")
+       self.indicator.customActivityIndicatory(self.view, startAnimate: true)
         
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user, error) in
             if let error = error {
@@ -45,7 +49,7 @@ class LogInViewController: UIViewController {
             
             if let user = user {
                 let vc  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "userVC")
-                
+              self.indicator.customActivityIndicatory(self.view, startAnimate: false)
                 self.present(vc, animated: true, completion: nil)
                 
             }

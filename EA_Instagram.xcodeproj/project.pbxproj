@@ -14,6 +14,8 @@
 		2627E1771F9FB78700099AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2627E1761F9FB78700099AFA /* Assets.xcassets */; };
 		2627E17A1F9FB78700099AFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2627E1781F9FB78700099AFA /* LaunchScreen.storyboard */; };
 		2627E1821F9FB93F00099AFA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2627E1811F9FB93F00099AFA /* GoogleService-Info.plist */; };
+		265E7A9A1FAF60220041224D /* ShowIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265E7A991FAF60220041224D /* ShowIndicator.swift */; };
+		267373AB1FACF5E6008D3632 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267373AA1FACF5E6008D3632 /* UploadViewController.swift */; };
 		267CF2D81FAA110D0001922C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CF2D71FAA110D0001922C /* User.swift */; };
 		269036DF1FA3B731009F3E95 /* ImageUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269036DE1FA3B731009F3E95 /* ImageUploadManager.swift */; };
 		269FB7BD1FA659CD00F220BD /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269FB7BC1FA659CD00F220BD /* UsersTableViewCell.swift */; };
@@ -31,6 +33,8 @@
 		2627E1791F9FB78700099AFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2627E17B1F9FB78700099AFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2627E1811F9FB93F00099AFA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		265E7A991FAF60220041224D /* ShowIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowIndicator.swift; sourceTree = "<group>"; };
+		267373AA1FACF5E6008D3632 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		267CF2D71FAA110D0001922C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		269036DE1FA3B731009F3E95 /* ImageUploadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadManager.swift; sourceTree = "<group>"; };
 		269FB7BC1FA659CD00F220BD /* UsersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				261C246C1FA36F420037A565 /* SignUpViewController.swift */,
 				261C246E1FA372E00037A565 /* LogInViewController.swift */,
 				269FB7BE1FA65BB300F220BD /* UserViewController.swift */,
+				267373AA1FACF5E6008D3632 /* UploadViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				269036DE1FA3B731009F3E95 /* ImageUploadManager.swift */,
+				265E7A991FAF60220041224D /* ShowIndicator.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -274,7 +280,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				265E7A9A1FAF60220041224D /* ShowIndicator.swift in Sources */,
 				261C246D1FA36F420037A565 /* SignUpViewController.swift in Sources */,
+				267373AB1FACF5E6008D3632 /* UploadViewController.swift in Sources */,
 				269FB7BF1FA65BB300F220BD /* UserViewController.swift in Sources */,
 				2627E1701F9FB78700099AFA /* AppDelegate.swift in Sources */,
 				269036DF1FA3B731009F3E95 /* ImageUploadManager.swift in Sources */,
