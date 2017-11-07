@@ -15,5 +15,7 @@ class Feeds: NSObject {
     var pathToImage: String!
     var userID: String!
     var postID: String!
+    
+    var peopleWhoLikes: [String] = [String]()
 
 }

@@ -539,7 +539,7 @@
                                                         <action selector="likeBtnPressed:" destination="EzU-L3-qB6" eventType="touchUpInside" id="RhY-Yu-G5R"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1f-FK-zu5">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1f-FK-zu5">
                                                     <rect key="frame" x="8" y="160" width="43" height="30"/>
                                                     <state key="normal" title="Unlike"/>
                                                     <connections>
@@ -604,7 +604,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jdR-wB-G2N"/>
+        <segue reference="CoI-l4-mv0"/>
         <segue reference="nzl-nf-b3k"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -17,6 +17,8 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     var following = [String]()
     
+    let indicator = ShowIndicator()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,8 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     func fetchFeeds() {
+        
+        self.indicator.customActivityIndicatory(self.view, startAnimate: true)
         let ref = Database.database().reference()
         
         ref.child("users").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
@@ -77,11 +81,18 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                                 feed.postID = postID
                                                 feed.userID = userID
                                                 
+                                                
+                                                if let people = value["peopleWhoLikes"] as? [String : AnyObject]  {
+                                                    for (_, person) in people {
+                                                        feed.peopleWhoLikes.append(person as! String)
+                                                    }
+                                                }
+                                                
                                                 self.feeds.append(feed)
                                             }
                                         }
                                     }
-                                    
+                                     self.indicator.customActivityIndicatory(self.view, startAnimate: false)
                                     self.collectionView.reloadData()
                                 }
                             }
@@ -93,7 +104,7 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
             
         })
-        
+       
         ref.removeAllObservers()
     }
     
@@ -113,6 +124,15 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cell.image.downloadImage(from: feeds[indexPath.row].pathToImage)
         cell.userName.text = feeds[indexPath.row].authod
         cell.likeCount.text = "\(feeds[indexPath.row].likes!) Likes"
+        cell.postID = feeds[indexPath.row].postID
+        
+        for person in self.feeds[indexPath.row].peopleWhoLikes {
+            if person == Auth.auth().currentUser?.uid {
+                cell.likeBtn.isHidden = true
+                cell.unlikeBtn.isHidden = false
+            }
+        }
+        
         
         return cell
     }
