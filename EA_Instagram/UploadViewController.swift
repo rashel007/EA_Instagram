@@ -31,6 +31,12 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
        picker.delegate = self
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backToUser" {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {

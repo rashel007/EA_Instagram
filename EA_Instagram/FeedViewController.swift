@@ -28,6 +28,12 @@ class FeedViewController: UIViewController, UICollectionViewDelegate, UICollecti
         fetchFeeds()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backToUser" {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     
     func fetchFeeds() {
         let ref = Database.database().reference()

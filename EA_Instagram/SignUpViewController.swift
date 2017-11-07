@@ -90,8 +90,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                         
                         Database.database().reference().child("users").child(user.uid).setValue(userInfo)
                         
-                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "userVC")
-                        self.present(vc, animated: true, completion: nil)
+//                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "userVC")
+//                        self.present(vc, animated: true, completion: nil)
                         self.dismiss(animated: true, completion: nil)
                     }
                     
